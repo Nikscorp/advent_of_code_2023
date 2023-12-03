@@ -55,6 +55,7 @@ func part1(input string) any {
 					continue
 				}
 				isAdjacent = true
+				break
 			}
 		}
 
