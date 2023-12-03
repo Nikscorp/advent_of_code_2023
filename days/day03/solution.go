@@ -68,9 +68,9 @@ func part1(input string) any {
 }
 
 type uniqueNum struct {
-	num  int
-	i    int
-	j_to int
+	num int
+	i   int
+	jTo int
 }
 
 func part2(input string) any {
@@ -80,23 +80,23 @@ func part2(input string) any {
 
 	for i := 0; i < len(matrix); i++ {
 		curNum := 0
-		var adj_gears []coord
+		var adjGears []coord
 
 		for j := 0; j < len(matrix[i]); j++ {
 			if !isDigit(matrix[i][j]) {
-				for _, gear := range adj_gears {
+				for _, gear := range adjGears {
 					if gearToNums[gear] == nil {
 						gearToNums[gear] = make(map[uniqueNum]struct{})
 					}
 					gearToNums[gear][uniqueNum{
-						num:  curNum,
-						i:    i,
-						j_to: j - 1,
+						num: curNum,
+						i:   i,
+						jTo: j - 1,
 					}] = struct{}{}
 				}
 
 				curNum = 0
-				adj_gears = adj_gears[:0]
+				adjGears = adjGears[:0]
 
 				continue
 			}
@@ -111,21 +111,21 @@ func part2(input string) any {
 
 				curSym := matrix[newC.i][newC.j]
 				if curSym == '*' {
-					adj_gears = append(adj_gears, newC)
+					adjGears = append(adjGears, newC)
 				}
 			}
 		}
 
 		last := matrix[i][len(matrix[i])-1]
 		if isDigit(last) {
-			for _, gear := range adj_gears {
+			for _, gear := range adjGears {
 				if gearToNums[gear] == nil {
 					gearToNums[gear] = make(map[uniqueNum]struct{})
 				}
 				gearToNums[gear][uniqueNum{
-					num:  curNum,
-					i:    i,
-					j_to: len(matrix[i]) - 1,
+					num: curNum,
+					i:   i,
+					jTo: len(matrix[i]) - 1,
 				}] = struct{}{}
 			}
 		}
