@@ -12,23 +12,17 @@ func part1(input string) any {
 		colonIndex := strings.Index(line, ":")
 		line = line[colonIndex+2:]
 		wantNumbersS, gotNumbersS, _ := strings.Cut(line, " | ")
-		wantNumbers := strings.Split(wantNumbersS, " ")
-		gotNumbers := strings.Split(gotNumbersS, " ")
+		wantNumbers := strings.Fields(wantNumbersS)
+		gotNumbers := strings.Fields(gotNumbersS)
 
 		want := make(map[int]struct{}, len(wantNumbers))
 		winCnt := 0
 
 		for _, wantN := range wantNumbers {
-			if wantN == "" {
-				continue
-			}
 			want[toInt(wantN)] = struct{}{}
 		}
 
 		for _, gotN := range gotNumbers {
-			if gotN == "" {
-				continue
-			}
 			if _, ok := want[toInt(gotN)]; ok {
 				winCnt++
 			}
@@ -54,23 +48,17 @@ func part2(input string) any {
 		res += 1 + additionalCards[gameID]
 
 		wantNumbersS, gotNumbersS, _ := strings.Cut(line, " | ")
-		wantNumbers := strings.Split(wantNumbersS, " ")
-		gotNumbers := strings.Split(gotNumbersS, " ")
+		wantNumbers := strings.Fields(wantNumbersS)
+		gotNumbers := strings.Fields(gotNumbersS)
 
 		want := make(map[int]struct{}, len(wantNumbers))
 		winCnt := 0
 
 		for _, wantN := range wantNumbers {
-			if wantN == "" {
-				continue
-			}
 			want[toInt(wantN)] = struct{}{}
 		}
 
 		for _, gotN := range gotNumbers {
-			if gotN == "" {
-				continue
-			}
 			if _, ok := want[toInt(gotN)]; ok {
 				winCnt++
 			}
