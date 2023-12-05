@@ -20,8 +20,7 @@ func part1(input string) any {
 
 	seeds := make([]int, 0)
 	for _, seed := range strings.Fields(groups[0][len("seeds: "):]) {
-		seedInt, _ := strconv.Atoi(seed)
-		seeds = append(seeds, seedInt)
+		seeds = append(seeds, toInt(seed))
 	}
 
 	mappingPipeline := make([][]mapInterval, 0, len(groups)-1)
@@ -34,7 +33,6 @@ func part1(input string) any {
 		resSeed := seed
 		for _, mapping := range mappingPipeline {
 			resSeed = doMapping(resSeed, mapping)
-			_ = resSeed
 		}
 		res = min(res, resSeed)
 	}
@@ -119,8 +117,8 @@ func part2(input string) any {
 	go func() {
 		defer wg.Done()
 		for i := 0; i < len(seedsS); i += 2 {
-			seed, _ := strconv.Atoi(seedsS[i])
-			n, _ := strconv.Atoi(seedsS[i+1])
+			seed := toInt(seedsS[i])
+			n := toInt(seedsS[i+1])
 			for j := 0; j < n; j++ {
 				seed++
 				seedCh <- seed
