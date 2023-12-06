@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math"
 	"strconv"
 	"strings"
 )
@@ -10,19 +11,8 @@ func part1(input string) any {
 	res := 1
 
 	for i := 0; i < len(times); i++ {
-		waysToWin := 0
-
-		for holdTime := 1; holdTime < times[i]; holdTime++ {
-			speed := holdTime
-			remainingTime := times[i] - holdTime
-			distance := speed * remainingTime
-
-			if distance > distances[i] {
-				waysToWin++
-			}
-		}
-
-		res *= waysToWin
+		waysToWinGot := solveEquation(distances[i], times[i])
+		res *= waysToWinGot
 	}
 
 	return res
@@ -54,4 +44,13 @@ func parseInput(input string) ([]int, []int) {
 	}
 
 	return times, distances
+}
+
+func solveEquation(distance int, time int) int {
+	d := math.Sqrt(float64(time*time - 4*distance))
+
+	from := math.Floor((float64(time) - d) / 2)
+	to := math.Ceil((float64(time) + d) / 2)
+
+	return int(to) - int(from) - 1
 }
