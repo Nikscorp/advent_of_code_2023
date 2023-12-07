@@ -20,7 +20,6 @@ jobs:
           session: ${{ secrets.AOC_SESSION }} # secret containing session code, see setup on how to obtain
           year: 2023
 
-      - uses: stefanzweifel/git-auto-commit-action@v4 # Step that pushes these local changes back to your github repo
+      - uses: stefanzweifel/git-auto-commit-action@v5 # use v5
         with:
-          commit_message: Update badges
-          file_pattern: README.md
+          commit_message: Update README badges
