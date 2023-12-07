@@ -1,7 +1,7 @@
 name: Update README
 on:
   schedule:
-    - cron: "0 */1 * * *"  # Every 1 hour
+    - cron: "16 5 1-25 12 *" # from the 1. December till 25. December every day at 5:16am (avoid load at full hours)
   workflow_dispatch:
 
 jobs:

@@ -1,12 +1,14 @@
 # Advent of code 2023
 
-<p align="center">
-  <img src="./static/logo.svg" width="220" />
-</p>
+<div align="center">
+
+![](https://img.shields.io/badge/day%20📅-22-blue) ![](https://img.shields.io/badge/stars%20⭐-34-yellow) ![](https://img.shields.io/badge/days%20completed-17-red)
+
+<img src="./static/logo.svg" width="220" />
+
+</div>
 
 Here you can find my golang solutions for [Advent Of Code 2023](https://adventofcode.com).
-
-## Current results
 
 <!--- advent_readme_stars table --->
 ## 2023 Results
