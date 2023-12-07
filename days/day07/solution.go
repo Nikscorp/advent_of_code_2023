@@ -22,7 +22,7 @@ const (
 type CardType uint8
 
 const (
-	Jocker CardType = iota
+	Joker CardType = iota
 	Two
 	Three
 	Four
@@ -115,7 +115,7 @@ func part2(input string) any {
 	return res
 }
 
-func hand(s string, considerJockers bool) Hand {
+func hand(s string, considerJokers bool) Hand {
 	var res = make(Hand, 5)
 
 	for i := 0; i < len(s); i++ {
@@ -126,8 +126,8 @@ func hand(s string, considerJockers bool) Hand {
 		case v == 'T':
 			res[i] = Ten
 		case v == 'J':
-			if considerJockers {
-				res[i] = Jocker
+			if considerJokers {
+				res[i] = Joker
 			} else {
 				res[i] = J
 			}
@@ -145,19 +145,19 @@ func hand(s string, considerJockers bool) Hand {
 	return res
 }
 
-func handType(s string, considerJockers bool) HandType {
+func handType(s string, considerJokers bool) HandType {
 	m := make(map[byte]int)
-	jockerCnt := 0
+	jokerCnt := 0
 
 	for i := 0; i < len(s); i++ {
-		if considerJockers && s[i] == 'J' {
-			jockerCnt++
+		if considerJokers && s[i] == 'J' {
+			jokerCnt++
 			continue
 		}
 		m[s[i]]++
 	}
 
-	if considerJockers && jockerCnt > 0 {
+	if considerJokers && jokerCnt > 0 {
 		var keyOfMaxV byte
 		maxV := 0
 		for k, v := range m {
@@ -167,7 +167,7 @@ func handType(s string, considerJockers bool) HandType {
 			}
 		}
 
-		m[keyOfMaxV] += jockerCnt
+		m[keyOfMaxV] += jokerCnt
 	}
 
 	switch len(m) {
